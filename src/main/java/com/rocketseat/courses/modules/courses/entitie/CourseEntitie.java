@@ -11,6 +11,8 @@ import java.util.UUID;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.rocketseat.courses.modules.courses.dto.CreateCourseRequestDTO;
+
 import java.time.LocalDateTime;
 @Entity
 @Table(name = "courses")
@@ -26,9 +28,14 @@ public class CourseEntitie {
   @Column(name = "created_at")
   private LocalDateTime createdAt;
   @UpdateTimestamp
-  @Column(name = "created_at")
+  @Column(name = "update_at")
   private LocalDateTime updatedAt;
   public CourseEntitie() {
+  }
+  public CourseEntitie(CreateCourseRequestDTO request) {
+    this.setName(request.getName());
+    this.setCategory(request.getCategory());
+    this.setActive(request.isActive());
   }
   public CourseEntitie(String name, String category) {
     this.setName(name);
