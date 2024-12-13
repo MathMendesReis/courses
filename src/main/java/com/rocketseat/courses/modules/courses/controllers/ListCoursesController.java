@@ -12,6 +12,11 @@ import com.rocketseat.courses.modules.courses.entitie.CourseEntitie;
 import com.rocketseat.courses.modules.courses.useCases.ListCoursesUseCase;
 import com.rocketseat.courses.modules.courses.utils.ApiRouters;
 
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +28,11 @@ public class ListCoursesController {
   private ListCoursesUseCase listCoursesUseCase;
   @GetMapping()
   @Tag(name = "Cursos",description = "Lista todos os cursos")
-
+  @ApiResponses({
+        @ApiResponse(responseCode = "200",content = {
+           @Content(array = @ArraySchema(schema = @Schema(implementation = CourseEntitie.class)))
+        })
+    })
   public ResponseEntity<Object> handle() {
     try {
       List<CourseEntitie> res = this.listCoursesUseCase.execute();
