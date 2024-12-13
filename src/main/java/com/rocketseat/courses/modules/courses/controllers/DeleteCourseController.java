@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rocketseat.courses.modules.courses.useCases.DeleteCourseUseCase;
 import com.rocketseat.courses.modules.courses.utils.ApiRouters;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
@@ -22,12 +25,15 @@ public class DeleteCourseController {
   private DeleteCourseUseCase deleteCourseUseCase;
 
   @DeleteMapping("/{id}")
-  @Tag(name = "Cursos",description = "Deleta um curso pelo seu id")
-
+  @Tag(name = "Cursos",description = "Deleta um curso")
+  @Operation(summary = "Deleção de curso", description = "Essa função é responsável por deletar um curso na base de dados")
+  @ApiResponses({
+      @ApiResponse(responseCode = "204")
+  })
   public ResponseEntity<?> handle(@PathVariable UUID id) {
     try {
       this.deleteCourseUseCase.execute(id);
-      return new ResponseEntity<>(null, HttpStatus.OK);
+      return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
     }
