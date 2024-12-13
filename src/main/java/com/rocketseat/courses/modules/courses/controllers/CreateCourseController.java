@@ -9,13 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.rocketseat.courses.modules.courses.dto.CreateCourseRequestDTO;
-import com.rocketseat.courses.modules.courses.entitie.CourseEntitie;
 import com.rocketseat.courses.modules.courses.useCases.CreatedCourseUseCase;
 import com.rocketseat.courses.modules.courses.utils.ApiRouters;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
